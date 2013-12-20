@@ -76,10 +76,8 @@ for subroot, dirs, files in os.walk(rootdir):
     skipdir = ['.repo']
     if subroot.replace(rootdir, '') in skipdir:
         continue
-    for d in dirs:
-        if d == '.git':
+    if '.git' in dirs:
             record_git_log(subroot)
             save_to_file(jsonfile)
             git_reset_to_date(subroot)
             jsonall=[]
-            break
